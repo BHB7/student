@@ -128,7 +128,7 @@ public class AdminController {
         if (file == null || file.isEmpty()) {
             return Result.error("文件不能为空");
         }
-        UpYun upYun = new UpYun("sm101", "smroot", "A6dYRtKLSPafsXwNt9lfJD8s4955iAvn");
+        UpYun upYun = new UpYun("sm101", "smroot", "你的秘钥信息");
         String filename = file.getOriginalFilename() + UUID.randomUUID().toString() + ".jpg";
         System.out.println("图片名称：" + filename);
         boolean re = upYun.writeFile(filename, file.getBytes(), false);
