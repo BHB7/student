@@ -33,3 +33,7 @@ npm run build
 ```sh
 npm run lint
 ```
+
+# student
+
+学生管理系统
