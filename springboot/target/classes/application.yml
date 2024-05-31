@@ -1,0 +1,38 @@
+server:
+  port: 9090
+
+# 数据库配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 1234
+    url: jdbc:mysql://localhost:3306/student?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
+  upYun:
+    url: http://sm101.test.upcdn.net/
+    bucket-name: sm101.test.upcdn.net
+    path: sm101.test.upcdn.net/
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+# 配置mybatis实体和xml映射
+mybatis:
+  # configuration:
+  #   log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  #   map-underscore-to-camel-case: true
+  # 标注mybatis配置文件的位置
+  # config-location: classpath:mybatis-config.xml
+  # 标注待解析的mapper的xml文件位置
+  mapper-locations: classpath:mapper/*.xml
+  # 标注实体类位置
+  type-aliases-package: com.example.entity
+
+# 分页插件配置
+pagehelper:
+  helper-dialect: mysql  # 设置数据库方言，这里是MySQL
+  params:
+    count: countSql      # 指定计数查询的SQL前缀
+  reasonable: true       # 是否开启合理化参数，默认为false，开启后，如果参数不合理（如：pageNum<1, pageSize<0），会抛出异常
+  support-methods-arguments: true  # 是否支持通过map或者@Param来传入多参数
