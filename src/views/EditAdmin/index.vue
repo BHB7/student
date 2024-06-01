@@ -90,6 +90,14 @@ const beforeUpload = (file) => {
   fileList.value = [file]
   return false // 阻止默认上传行为
 }
+
+// 取消
+const close = () => {
+  formRef.value.resetFields()
+  // 清空头像
+  adminStore.setAvatar('')
+  router.push('/user')
+}
 </script>
 
 <template>
@@ -105,7 +113,8 @@ const beforeUpload = (file) => {
       dashed
     />
 
-    <div class="h-screen flex items-center">
+    <div class="h-screen flex items-center flex-col justify-center">
+      <h1 class="text-2xl my-10">编辑资料</h1>
       <a-form ref="formRef" :model="userData" :rules="rules">
         <a-form-item label="昵称" name="aname">
           <a-input v-model:value="userData.aname" />
@@ -148,7 +157,7 @@ const beforeUpload = (file) => {
           <a-button class="mx-4" type="primary" @click="handleUpload"
             >修改</a-button
           >
-          <a-button type="dashed" @click="$router.push('/')">取消</a-button>
+          <a-button type="dashed" @click="close">取消</a-button>
         </a-form-item>
       </a-form>
     </div>

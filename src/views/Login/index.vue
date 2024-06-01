@@ -46,6 +46,10 @@ const onFinish = async (values) => {
     // 注册
     message.loading('注册中...', 0.5)
     const res = await registerServer(values)
+    if (res.code === '500'){
+      message.error(res.msg)
+      return
+    }
     notification.open({
       message: '系统提示',
       description: h('div', null, [

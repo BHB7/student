@@ -82,7 +82,7 @@ getStudents()
 let formState = ref({
   sname: '',
   sid: '',
-  sclass: '',
+  sclass: route.query.classId,
   ssex: ''
 })
 // 表单 dom
@@ -115,18 +115,11 @@ const rules = {
         }
         const res = await checkSidServer(value)
         console.log(res)
-        if (!res.code === '200') {
+        if (res.code === '500') {
           return Promise.reject('学号已存在')
         }
         return Promise.resolve()
       }
-    }
-  ],
-  sclass: [
-    {
-      required: true,
-      message: '请输入班级',
-      trigger: 'blur'
     }
   ],
   ssex: [
@@ -390,9 +383,6 @@ defineOptions({
       </a-form-item>
       <a-form-item label="学生学号" name="sid">
         <a-input v-model:value="formState.sid" />
-      </a-form-item>
-      <a-form-item label="所属班级" name="sclass">
-        <a-input v-model:value="formState.sclass" />
       </a-form-item>
       <a-form-item label="性别" name="ssex">
         <a-radio-group v-model:value="formState.ssex">
